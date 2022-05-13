@@ -11,9 +11,10 @@ port = '50051'
 class TemplateServicer(t_service_pb2_grpc.t_srvServicer):
     '''Doc string'''
 
-    def __init__(self, host, port):
+    def __init__(self, host, port, processor):
         self.host = host
         self.port = port
+        self.processor = processor
 
     async def serve(self):
         logger.info('')
@@ -23,10 +24,10 @@ class TemplateServicer(t_service_pb2_grpc.t_srvServicer):
         listen_addr = server.add_insecure_port(listen_addr)
         logger.info(f"Starting server on {listen_addr}")
         await server.start()
-        await self.im_alive()
         await server.wait_for_termination()
 
-    async def im_alive(self):
-        while True:
-            await asyncio.sleep(1)
-            print('---')
+    async def get_doc(self, request, context)->bytes:
+        logger.info('')
+        ret_data = t_service_pb2.get_doc_response()
+        ret_data.document = await self.processor.get_doc(request.document_name, request.params)
+        return ret_data
