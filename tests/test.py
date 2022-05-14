@@ -31,7 +31,6 @@ class TestGRPCClient(unittest.IsolatedAsyncioTestCase):
       {'proc_id':'3', 'proc_name':'tres', 'control_methods':'control_method'},
       ])
     self.assertFalse('Error' in res)
-    print(res)
 
 
 if __name__ == '__main__':

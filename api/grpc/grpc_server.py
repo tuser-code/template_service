@@ -5,9 +5,6 @@ import api.grpc.t_service_pb2 as t_service_pb2
 import api.grpc.t_service_pb2_grpc as t_service_pb2_grpc
 
 
-port = '50051'
-
-
 class TemplateServicer(t_service_pb2_grpc.t_srvServicer):
     '''Doc string'''
 

@@ -2,9 +2,6 @@ import os
 import sys
 import grpc
 from loguru import logger
-
-sys.path.append(os.getcwd())
-
 import api.grpc.t_service_pb2 as t_service_pb2
 import api.grpc.t_service_pb2_grpc as t_service_pb2_grpc
 
