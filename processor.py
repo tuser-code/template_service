@@ -10,5 +10,5 @@ class Processor():
 	async def get_doc(self, doc_name:str, params:dict)->str:
 		logger.info('')
 		params = json_format.MessageToDict(params)
-		template = self.t_engine.get_template(doc_name)
+		template = self.t_engine.get_template(doc_name + '.kv')
 		return template.render(**params)
