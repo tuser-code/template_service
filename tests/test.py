@@ -7,7 +7,7 @@ from loguru import logger
 
 sys.path.append(os.getcwd())
 
-from api.grpc.grpc_client import GRPCClient
+from api.grpc.grpc_testing_client import GRPCClient
 
 
 class TestGRPCClient(unittest.IsolatedAsyncioTestCase):
