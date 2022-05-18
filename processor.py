@@ -3,12 +3,12 @@ from google.protobuf import json_format
 
 class Processor():
 
-	def __init__(self, templating_engine):
+	def __init__(self, environment):
 		logger.trace('')
-		self.t_engine = templating_engine
+		self.environment = environment
 
 	async def get_doc(self, doc_name:str, params:dict)->str:
 		logger.info('')
 		params = json_format.MessageToDict(params)
-		template = self.t_engine.get_template(doc_name + '.kv')
+		template = self.environment.get_template(doc_name + '.kv')
 		return template.render(**params)

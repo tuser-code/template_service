@@ -6,12 +6,12 @@ from processor import Processor
 import config as CONFIG
 
 
-env = Environment(
+environment = Environment(
     loader = FileSystemLoader(['templates', 'templates_kv']),
     autoescape=select_autoescape()
 )
 
-processor = Processor(env)
+processor = Processor(environment)
 
 srv = TemplateServicer(CONFIG.SERVER, CONFIG.PORT, processor)
 
