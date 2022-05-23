@@ -1,6 +1,7 @@
 from loguru import logger
 import asyncio
 import grpc
+import pickle
 import api.grpc.t_service_pb2 as t_service_pb2
 import api.grpc.t_service_pb2_grpc as t_service_pb2_grpc
 
@@ -25,6 +26,7 @@ class TemplateServicer(t_service_pb2_grpc.t_srvServicer):
 
     async def get_doc(self, request, context)->bytes:
         logger.info('')
+        params = pickle.loads(request.str_params)
         ret_data = t_service_pb2.get_doc_response()
-        ret_data.document = await self.processor.get_doc(request.document_name, request.params)
+        ret_data.document = await self.processor.get_doc(request.document_name, params)
         return ret_data

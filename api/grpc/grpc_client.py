@@ -13,7 +13,7 @@ class GRPCClient():
         self.server_address_port = server_address_port
         self.options = (('grpc.enable_http_proxy', 0),)
 
-    async def get_doc(self, doc_name:str, **params)->str:
+    async def get_data(self, method, **params)->str:
       logger.info('')
       try:
           async with grpc.aio.insecure_channel(self.server_address_port, options=self.options) as channel:
@@ -26,3 +26,6 @@ class GRPCClient():
       except grpc.RpcError as rpc_error:
           logger.error(rpc_error)
           return str(rpc_error)
+      except Exception as e:
+          logger.error(e)
+          return str(e)

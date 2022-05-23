@@ -9,6 +9,10 @@ class Processor():
 
 	async def get_doc(self, doc_name:str, params:dict)->str:
 		logger.info('')
-		params = json_format.MessageToDict(params)
-		template = self.environment.get_template(doc_name + '.kv')
-		return template.render(**params)
+		try:
+			template = self.environment.get_template(doc_name + '.kv')
+			res = template.render(params=params)
+		except Exception as e:
+			logger.error(e)
+			res = ''
+		return res
