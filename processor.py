@@ -1,5 +1,5 @@
 from loguru import logger
-from google.protobuf import json_format
+
 
 class Processor():
 
@@ -10,7 +10,7 @@ class Processor():
 	async def get_doc(self, doc_name:str, params:dict)->str:
 		logger.info('')
 		try:
-			template = self.environment.get_template(doc_name + '.kv')
+			template = self.environment.get_template(f'{doc_name}/{doc_name}')
 			res = template.render(params=params)
 		except Exception as e:
 			logger.error(e)
