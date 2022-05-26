@@ -7,7 +7,7 @@ import config as CONFIG
 
 
 environment = Environment(
-    loader = FileSystemLoader(['templates', 'templates_kv']),
+    loader = FileSystemLoader(CONFIG.TEMPLATES),
     autoescape=select_autoescape()
 )
 
