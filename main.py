@@ -1,3 +1,4 @@
+#!./venv/bin/python
 import asyncio
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 from loguru import logger

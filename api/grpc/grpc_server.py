@@ -4,12 +4,13 @@ import grpc
 import pickle
 import api.grpc.t_service_pb2 as t_service_pb2
 import api.grpc.t_service_pb2_grpc as t_service_pb2_grpc
+from processor import Processor
 
 
 class TemplateServicer(t_service_pb2_grpc.t_srvServicer):
     '''Doc string'''
 
-    def __init__(self, host, port, processor):
+    def __init__(self, host:str, port:str, processor:Processor):
         self.host = host
         self.port = port
         self.processor = processor
@@ -24,7 +25,8 @@ class TemplateServicer(t_service_pb2_grpc.t_srvServicer):
         await server.start()
         await server.wait_for_termination()
 
-    async def get_doc(self, request, context)->bytes:
+    async def get_doc(self, request:t_service_pb2.get_doc_request, 
+        context:grpc._cython.cygrpc._ServicerContext)->bytes:
         logger.info('')
         params = pickle.loads(request.str_params)
         ret_data = t_service_pb2.get_doc_response()
